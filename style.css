@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+nav div {
+    background-color: rgb(199, 247, 199);
+    padding: 5px;
+}
+
+#c {
+    background-color: rgb(199, 247, 199);
+    border: 0;
+}
+
+svg {
+    color: blue;
+    margin-right: 9px;
+}
+
+#cards {
+    height: 650px;
+    background-color: rgb(199, 247, 199);
+}
+
+#footer {
+    border: 0;
+}
+
+#grand {
+    float: right;
+}
+
+#POM {
+
+    background-color: red;
+}
