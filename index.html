@@ -105,15 +105,16 @@
 
     <script>
         $(document).ready(function() {
-
+            // current number of items in the table
             let goods = 1
 
-
+            // click of the add button calls the test function
             $('#add').click(function () {
                 test()
             })
 
             function test() {
+                // Checks for the value of the last input field, if any is empty then shake the table
                 a = $('tbody tr:last-child').find('.quantity').val()
                 b = $('tbody tr:last-child').find('.price').val()
                 c = $('tbody tr:last-child').find('.item').val()
@@ -129,26 +130,27 @@
                 }
             }
 
+            // adds in a new table row of input to the existing table
             function add() {
                 tr =`<tr><td class="num"></td><td><input type="text" class="form-control item"></td><td><input type="number" class="form-control price" min="1" ></td><td><input type="number" class="form-control quantity" min="1" ></td><td><input type="number" class="form-control total" disabled ></td><td><div class="btn-group" role="group"><button type="button" class="btn bg-white del"><i class="far fa-trash-alt"></i></button><button type="button" class="btn bg-white edit"><i class="far fa-edit"></i></button></div></td></tr>`
                 $('tbody').append(tr)
             }
 
-
+            // clears all the table rows and adds in just a single input one
             $(document).on('click', '#minus', function() {
                 $('tbody').children().remove()
                 add()
                 serNum()
             })
 
-
-
+            // ON press of the enter key, perform the test operation
             $(document).on('keypress',function(e) {
                 if(e.which == 13) {
                     test()
                 }
             });
 
+            // on click of the edit button, the icon changes to save or vice versa
             $(document).on('click', '.edit', function () {
                 if ($(this).children().hasClass('far fa-edit')){
                     $(this).children().removeClass('far fa-edit')
@@ -166,29 +168,26 @@
                     } else {
                         disable1($(this))
                     }
-
                 }
             })
 
+            // enables the current tr input for editing
             function edits(due) {
                 due.closest('tr').find('.quantity').prop('disabled', false)
                 due.closest('tr').find('.price').prop('disabled', false)
                 due.closest('tr').find('.item').prop('disabled', false)
             }
 
+            // disables all the input fields in the talbe
             function disable() {
                 $('tbody input').prop('disabled', 'true')
             }
+
             function disable1(event) {
                 event.closest('tr').find('input').prop('disabled', true)
             }
 
-            $('#test').click(function () {
-                if ($(this).closest('tr').find('.quantity').val() == '') {
-                }
-            })
-
-
+            // delete removes the current current row
             $(document).on('click', '.del', function () {
                 remove(this)
                 goods--
@@ -196,7 +195,7 @@
                 serNum()
             })
 
-
+            // Get the value of the current's row price and quantity input and multiply the result into the toal input
             function cal(event){
                 q = event.closest('tr').find('.quantity').val();
                 price = event.closest('tr').find('.price').val();
@@ -205,10 +204,12 @@
                 gt()
             }
 
+            // changes the save icon to an edit icon
             function geted() {
                 $('tbody').find('.fa-save').removeClass('fas fa-save').addClass('far fa-edit')
             }
 
+            // the gt() or general total function get the total for all the items and adds the sum into the gtand total
             function gt() {
                 temp = 0
                 $('.total').each(function () {
@@ -220,6 +221,7 @@
                     $('#grands').text(temp)
             }
 
+            // foreach number class element, put in the approprite numbering
             function serNum() {
                 number = 1
                 $('.num').each(function () {
@@ -227,6 +229,7 @@
                 })
             }
 
+            // removes the curent table row
             function remove(event) {
                     if (goods > 1) {
                     event.closest('tr').remove('tr')
@@ -238,10 +241,6 @@
             })
 
         })
-
-
-
-
     </script>
   </body>
 </html>
